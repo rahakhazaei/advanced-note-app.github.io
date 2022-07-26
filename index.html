@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>note app</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="main-section">
+      <div class="container">
+        <div class="nav-bar">
+          <div class="nav-bar__search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <span class="nav-bar__search-title">جستجو</span>
+            <input class="" type="search" name="" id="" />
+          </div>
+          <div class="nav-bar__sort navBarSort">
+            <span class="nav-bar__sort-title">مرتب سازی</span>
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </div>
+          <div class="nav-bar__favorite navBarFavorite">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </div>
+
+          <div class="nav-bar__menu">
+            <ul class="sort-menu">
+              <li class="sort-menu__item">تاریخ به روزرسانی</li>
+              <li class="sort-menu__item">تاریح ایجاد</li>
+            </ul>
+
+            <ul class="favorite-menu">
+              <li class="note-color note-color--red"></li>
+              <li class="note-color note-color--yellow"></li>
+              <li class="note-color note-color--blue"></li>
+              <li class="note-color note-color--purple"></li>
+              <li class="note-color note-color--orange"></li>
+              <li class="note-color note-color--gray"></li>
+            </ul>
+          </div>
+        </div>
+        <div class="side-bar">
+          <h1 class="side-bar__title">ثبت</h1>
+          <div class="add-button">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </div>
+          <div class="side-bar__note-color sideBarNoteColor">
+            <div class="note-color note-color--gray" data-color="gray"></div>
+            <div class="note-color note-color--red" data-color="red"></div>
+            <div
+              class="note-color note-color--yellow"
+              data-color="yellow"
+            ></div>
+            <div class="note-color note-color--blue" data-color="blue"></div>
+            <div
+              class="note-color note-color--purple"
+              data-color="purple"
+            ></div>
+            <div
+              class="note-color note-color--orange"
+              data-color="orange"
+            ></div>
+          </div>
+        </div>
+        <div class="content">
+          <h2 class="content__title">یادداشت ها</h2>
+          <div class="content__empty-img contentEmptyImg">
+            <img src="./assets/images/add-note-3.jpg" alt="" />
+          </div>
+          <div class="note-items" id="app">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/main.js" type="module"></script>
+  </body>
+</html>
