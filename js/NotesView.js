@@ -11,7 +11,7 @@ export default class NotesView {
     this.app.innerHTML = "";
     // read storage
     const notes = NotesAPI.getNotes();
-    // localStorage.setItem("notes-app", JSON.stringify(notes));
+    // localStorage.setItem("app-notes", JSON.stringify(notes));
 
     if (newNote) {
       notes.push(newNote);
@@ -97,6 +97,11 @@ export default class NotesView {
       <span class="password-icon passwordLock"><i class="fa-solid fa-lock"></i></span>
       <input type="password" class="password-input passwordInput" autocomplete="false" />
       <button class="password-login-btn loginBtn">ورود</button>
+    </div>
+    <div class="password-Btn-content passwordBtnContent">
+      <input type="password" class="password-input passwordValue" autocomplete="false" placeholder="رمز عبور خود را وارد کنید"/>
+      <input type="password" class="password-input passwordConfirmValue" autocomplete="false" placeholder="تکرار رمز عبور"/>
+      <button class="password-save-btn saveBtn">ذخیره</button>
     </div>
     <div class="note-item__header">
       <span class="note-button note-favorite-btn favoriteBtn"  data-note-id=${

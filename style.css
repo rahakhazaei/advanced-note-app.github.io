@@ -385,7 +385,8 @@ body {
   border-radius: 10px;
 }
 
-.password-container {
+.password-container,
+.password-Btn-content {
   display: none;
   /* display: flex; */
   flex-direction: column;
@@ -418,7 +419,7 @@ body {
 }
 
 .wrong-password {
-  border: 1px solid tomato;
+  border: 1px solid tomato !important;
 }
 
 .password-icon:hover {
@@ -451,7 +452,7 @@ body {
   background: #434343;
 }
 
-.password-login-btn {
+.password-login-btn, .password-save-btn {
   width: 60%;
   /* padding: 5px 15px; */
   /* margin-top: 10px; */
@@ -469,12 +470,14 @@ body {
 
 }
 
-.password-login-btn:hover {
+.password-login-btn:hover,
+.password-save-btn:hover {
   background: var(--maincolor);
   transition: all 0.1s ease;
 }
 
-.password-login-btn:focus {
+.password-login-btn:focus,
+.password-save-btn:focus {
   box-shadow: 0px 0px 0px 2px #a7a7a7b5;
   background: #00000061;
 }
@@ -484,6 +487,25 @@ body {
   max-height: initial;
   margin-top: 20px;
   padding: 5px;
+}
+
+.password-Btn-content .password-input {
+  visibility: visible;
+  max-height: initial;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  font-family:"iranyekan";
+  font-size: 10px;
+}
+
+.password-Btn-content .password-save-btn  {
+  max-height: initial;
+  visibility: visible;
+  padding: 5px 15px;
+}
+
+.show-password-btn-content {
+  display: flex;
 }
 
 .note-item__header {
