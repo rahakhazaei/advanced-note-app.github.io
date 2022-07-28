@@ -155,8 +155,8 @@ export default class NotesLogic {
           }
           if (actionTarget.classList.contains("passwordBtn")) {
             const passwordBtnContent = actionTarget
-            .closest(".note-item")
-            .querySelector(".passwordBtnContent");
+              .closest(".note-item")
+              .querySelector(".passwordBtnContent");
             passwordBtnContent.classList.add("show-password-btn-content");
             const saveBtns = this.app.querySelectorAll(".saveBtn");
             // console.log(saveBtns);
@@ -166,20 +166,38 @@ export default class NotesLogic {
                 // get password element and value
 
                 // get note-item element
-                const noteItem = e.target
-                .closest(".note-item");
-                const passwordElement = noteItem
-                .querySelector(".passwordValue");
+                const noteItem = e.target.closest(".note-item");
+                const passwordElement =
+                  noteItem.querySelector(".passwordValue");
                 const password = passwordElement.value;
                 // get confirm password and element
-                const confirmPasswordElement = noteItem
-                .querySelector(".passwordConfirmValue");
+                const confirmPasswordElement = noteItem.querySelector(
+                  ".passwordConfirmValue"
+                );
                 const confirmPassword = confirmPasswordElement.value;
                 // get note id
                 const noteId = noteItem.dataset.noteId;
-                
+
                 // compare passwords
-                this.comparePassword(password, confirmPassword, passwordElement, confirmPasswordElement, noteId);
+                this.comparePassword(
+                  password,
+                  confirmPassword,
+                  passwordElement,
+                  confirmPasswordElement,
+                  noteId
+                );
+              });
+            });
+
+            // get cancel Btn
+            const cancelBtns = this.app.querySelectorAll(".cancelBtn");
+            cancelBtns.forEach((btn) => {
+              btn.addEventListener("click", (e) => {
+                e.stopImmediatePropagation();
+                e.target
+                  .closest(".note-item")
+                  .querySelector(".passwordBtnContent")
+                  .classList.remove("show-password-btn-content");
               });
             });
           }
@@ -189,17 +207,24 @@ export default class NotesLogic {
     });
   }
 
-  comparePassword(password, confirmPassword, passwordElement, confirmPasswordElement, noteId) {
+  comparePassword(
+    password,
+    confirmPassword,
+    passwordElement,
+    confirmPasswordElement,
+    noteId
+  ) {
     // find password input container
-    const noteItem = this.app.querySelector(`.note-item[data-note-id="${noteId}"`);
+    const noteItem = this.app.querySelector(
+      `.note-item[data-note-id="${noteId}"`
+    );
     const passwordBtnContent = noteItem.querySelector(".passwordBtnContent");
 
     // check match password
-    if(password != confirmPassword) {
+    if (password != confirmPassword) {
       passwordElement.classList.add("wrong-password");
       confirmPasswordElement.classList.add("wrong-password");
-    }
-    else {
+    } else {
       const note = NotesAPI.findNote(noteId);
       note.password = password;
       passwordBtnContent.classList.remove("show-password-btn-content");

@@ -172,6 +172,7 @@ body {
   border: 1px solid rgba(231, 231, 231, 0.9);
   outline: none;
   padding: 5px 10px;
+  margin-right: 10px;
   border-radius: 5px;
 }
 
@@ -306,6 +307,7 @@ body {
 
   .nav-bar__search input {
     width: initial;
+    margin-right: 0;
   }
 
   .nav-bar__menu {
@@ -452,7 +454,8 @@ body {
   background: #434343;
 }
 
-.password-login-btn, .password-save-btn {
+.password-login-btn,
+.password-save-btn {
   width: 60%;
   /* padding: 5px 15px; */
   /* margin-top: 10px; */
@@ -467,7 +470,6 @@ body {
   visibility: hidden;
   max-height: 0;
   transition: all 0.2s cubic-bezier(0.79, 0.14, 0.15, 0.86);
-
 }
 
 .password-login-btn:hover,
@@ -494,11 +496,11 @@ body {
   max-height: initial;
   padding: 5px 10px;
   margin-bottom: 10px;
-  font-family:"iranyekan";
+  font-family: "iranyekan";
   font-size: 10px;
 }
 
-.password-Btn-content .password-save-btn  {
+.password-Btn-content .password-save-btn {
   max-height: initial;
   visibility: visible;
   padding: 5px 15px;
@@ -506,6 +508,24 @@ body {
 
 .show-password-btn-content {
   display: flex;
+}
+
+.cancel-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  margin-top: 30px;
+  border: 2px solid #38363654;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.cancel-btn:hover {
+  border-color: tomato;
+  transform: scale(1.2)
 }
 
 .note-item__header {

@@ -102,6 +102,7 @@ export default class NotesView {
       <input type="password" class="password-input passwordValue" autocomplete="false" placeholder="رمز عبور خود را وارد کنید"/>
       <input type="password" class="password-input passwordConfirmValue" autocomplete="false" placeholder="تکرار رمز عبور"/>
       <button class="password-save-btn saveBtn">ذخیره</button>
+      <span class="cancel-btn cancelBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
     </div>
     <div class="note-item__header">
       <span class="note-button note-favorite-btn favoriteBtn"  data-note-id=${
