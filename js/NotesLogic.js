@@ -35,7 +35,7 @@ export default class NotesLogic {
           });
         });
         this.actionOnNote();
-
+        
         // show password input
         const locksNotes = this.app.querySelectorAll(".passwordLock");
         locksNotes.forEach((lock) => {
@@ -95,14 +95,16 @@ export default class NotesLogic {
         "click",
         (e) => {
           e.stopImmediatePropagation();
-
+          const test = e.composedPath();
+          console.log(e);
+          
           // console.log(act.querySelector(".noteBody").value);
           // find note to action
           const noteID = act.dataset.noteId;
           const notes = NotesAPI.getNotes();
           const note = notes.find((item) => item.id == noteID);
-
-          const actionTarget = e.target;
+          
+          const actionTarget = e.target.closest(".noteBtn");
           if (actionTarget.classList.contains("favoriteBtn")) {
             actionTarget.classList.toggle("note-favorite-btn--selected");
             if (
@@ -113,7 +115,6 @@ export default class NotesLogic {
               note.favorite = false;
             }
             NotesAPI.saveNotes(note);
-            // e.stopPropagation();
           }
           if (actionTarget.classList.contains("deleteBtn")) {
             // delete from local storage

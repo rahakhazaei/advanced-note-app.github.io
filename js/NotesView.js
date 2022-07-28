@@ -105,12 +105,12 @@ export default class NotesView {
       <span class="cancel-btn cancelBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
     </div>
     <div class="note-item__header">
-      <span class="note-button note-favorite-btn favoriteBtn"  data-note-id=${
+      <span class="note-button note-favorite-btn noteBtn favoriteBtn"  data-note-id=${
         note.id || ""
       } 
         ><i class="fa fa-star favoriteIcon" aria-hidden="true"></i>
       </span>
-      <span class="note-header__password note-button passwordBtn"
+      <span class="note-header__password note-button noteBtn passwordBtn"
         ><i class="fas fa-key"></i>
       </span>
       <input
@@ -133,7 +133,7 @@ export default class NotesView {
       >${note.body || ""}</textarea>
     </div>
     <div class="note-item__footer">
-      <span class="note-footer__edit note-button editBtn"
+      <span class="note-footer__edit note-button noteBtn editBtn"
         ><i class="fa fa-pencil" aria-hidden="true"></i>
           <ul class="note-footer__edit-color">
             <li class="note-color note-color--red" data-color="red"></li>
@@ -144,7 +144,7 @@ export default class NotesView {
             <li class="note-color note-color--gray" data-color="gray"></li>
           </ul>
       </span>
-      <span class="note-footer__delete note-button deleteBtn"
+      <span class="note-footer__delete note-button noteBtn deleteBtn"
         ><i class="fa fa-trash"></i>
       </span>
       <span class="note-footer__date">${new Date(
