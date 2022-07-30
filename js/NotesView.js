@@ -2,15 +2,16 @@ import NotesAPI from "./NotesAPI.js";
 import NotesLogic from "./notesLogic.js";
 
 export default class NotesView {
-  constructor(app, newNote) {
+  constructor(app, newNote, notes) {
     this.app = app;
-    this.showNotes(newNote);
+    this.showNotes(newNote, notes);
   }
-  showNotes(newNote = null) {
+  showNotes(newNote = null, notes) {
+    if (notes.length ===0) {
+      notes = NotesAPI.getNotes();
+    }
     // empty inner HTML
     this.app.innerHTML = "";
-    // read storage
-    const notes = NotesAPI.getNotes();
     // localStorage.setItem("app-notes", JSON.stringify(notes));
 
     if (newNote) {

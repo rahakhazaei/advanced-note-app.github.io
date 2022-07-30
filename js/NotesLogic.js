@@ -60,12 +60,22 @@ export default class NotesLogic {
     this.addNote();
 
     // search note title
+    this.searchNote();
   }
 
   searchNote() {
     const searchInput = document.querySelector(".searchInput");
     searchInput.addEventListener("keyup", (e) => {
-      
+      const notes = NotesAPI.getNotes();
+      e.stopImmediatePropagation();
+
+      const searchNotes = notes.filter((note) => {
+        return note.title
+          .toLowerCase()
+          .includes(searchInput.value.toLowerCase().trim());
+      });
+
+      const notesView = new NotesView(this.app, null, searchNotes);
     });
   }
 
@@ -92,7 +102,7 @@ export default class NotesLogic {
         createTime: new Date().toISOString(),
         lastUpdated: new Date().toISOString(),
       };
-      const newNote = new NotesView(this.app, note);
+      const newNote = new NotesView(this.app, note, []);
       NotesAPI.saveNotes(note);
     });
   }
@@ -129,7 +139,7 @@ export default class NotesLogic {
               // delete from local storage
               NotesAPI.deleteNote(noteID);
               // delete from DOM
-              const newNote = new NotesView(this.app);
+              const newNote = new NotesView(this.app, null, []);
             }
             if (actionTarget.classList.contains("editBtn")) {
               actionTarget.lastElementChild.classList.toggle(
@@ -159,7 +169,7 @@ export default class NotesLogic {
                       : "";
 
                     NotesAPI.saveNotes(note);
-                    const newNote = new NotesView(this.app);
+                    const newNote = new NotesView(this.app, null, []);
                   },
                   { once: true }
                 );

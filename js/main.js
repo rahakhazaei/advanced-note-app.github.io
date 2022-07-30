@@ -10,7 +10,7 @@ const noteColor = document.querySelector(".sideBarNoteColor");
 const app = document.getElementById("app");
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  const view = new NotesView(app);
+  const view = new NotesView(app,null,[]);
   const notesLogic = new NotesLogic(app);
 });
 
