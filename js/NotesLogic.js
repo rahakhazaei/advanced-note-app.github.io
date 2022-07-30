@@ -35,7 +35,7 @@ export default class NotesLogic {
           });
         });
         this.actionOnNote();
-        
+
         // show password input
         const locksNotes = this.app.querySelectorAll(".passwordLock");
         locksNotes.forEach((lock) => {
@@ -58,6 +58,15 @@ export default class NotesLogic {
     );
 
     this.addNote();
+
+    // search note title
+  }
+
+  searchNote() {
+    const searchInput = document.querySelector(".searchInput");
+    searchInput.addEventListener("keyup", (e) => {
+      
+    });
   }
 
   editNote(newTitle, newBody, noteID) {
@@ -95,112 +104,124 @@ export default class NotesLogic {
         "click",
         (e) => {
           e.stopImmediatePropagation();
-          const test = e.composedPath();
-          console.log(e);
-          
+
           // console.log(act.querySelector(".noteBody").value);
           // find note to action
           const noteID = act.dataset.noteId;
           const notes = NotesAPI.getNotes();
           const note = notes.find((item) => item.id == noteID);
-          
+
           const actionTarget = e.target.closest(".noteBtn");
-          if (actionTarget.classList.contains("favoriteBtn")) {
-            actionTarget.classList.toggle("note-favorite-btn--selected");
-            if (
-              actionTarget.classList.contains("note-favorite-btn--selected")
-            ) {
-              note.favorite = true;
-            } else {
-              note.favorite = false;
+
+          if (actionTarget) {
+            if (actionTarget.classList.contains("favoriteBtn")) {
+              actionTarget.classList.toggle("note-favorite-btn--selected");
+              if (
+                actionTarget.classList.contains("note-favorite-btn--selected")
+              ) {
+                note.favorite = true;
+              } else {
+                note.favorite = false;
+              }
+              NotesAPI.saveNotes(note);
             }
-            NotesAPI.saveNotes(note);
-          }
-          if (actionTarget.classList.contains("deleteBtn")) {
-            // delete from local storage
-            NotesAPI.deleteNote(noteID);
-            // delete from DOM
-            const newNote = new NotesView(this.app);
-          }
-          if (actionTarget.classList.contains("editBtn")) {
-            actionTarget.lastElementChild.classList.toggle("show-color-picker");
-            actionTarget.lastElementChild.classList.toggle("editMode");
-            if (
-              actionTarget.lastElementChild.classList.contains(
+            if (actionTarget.classList.contains("deleteBtn")) {
+              // delete from local storage
+              NotesAPI.deleteNote(noteID);
+              // delete from DOM
+              const newNote = new NotesView(this.app);
+            }
+            if (actionTarget.classList.contains("editBtn")) {
+              actionTarget.lastElementChild.classList.toggle(
                 "show-color-picker"
-              )
-            ) {
-              this.app.querySelector(".editMode").addEventListener(
-                "click",
-                (event) => {
-                  event.target.classList.contains("note-color--red")
-                    ? (note.color = event.target.dataset.color)
-                    : event.target.classList.contains("note-color--yellow")
-                    ? (note.color = event.target.dataset.color)
-                    : event.target.classList.contains("note-color--blue")
-                    ? (note.color = event.target.dataset.color)
-                    : event.target.classList.contains("note-color--gray")
-                    ? (note.color = event.target.dataset.color)
-                    : event.target.classList.contains("note-color--purple")
-                    ? (note.color = event.target.dataset.color)
-                    : event.target.classList.contains("note-color--orange")
-                    ? (note.color = event.target.dataset.color)
-                    : "";
-
-                  NotesAPI.saveNotes(note);
-                  const newNote = new NotesView(this.app);
-                },
-                { once: true }
               );
+              actionTarget.lastElementChild.classList.toggle("editMode");
+              if (
+                actionTarget.lastElementChild.classList.contains(
+                  "show-color-picker"
+                )
+              ) {
+                this.app.querySelector(".editMode").addEventListener(
+                  "click",
+                  (event) => {
+                    event.target.classList.contains("note-color--red")
+                      ? (note.color = event.target.dataset.color)
+                      : event.target.classList.contains("note-color--yellow")
+                      ? (note.color = event.target.dataset.color)
+                      : event.target.classList.contains("note-color--blue")
+                      ? (note.color = event.target.dataset.color)
+                      : event.target.classList.contains("note-color--gray")
+                      ? (note.color = event.target.dataset.color)
+                      : event.target.classList.contains("note-color--purple")
+                      ? (note.color = event.target.dataset.color)
+                      : event.target.classList.contains("note-color--orange")
+                      ? (note.color = event.target.dataset.color)
+                      : "";
+
+                    NotesAPI.saveNotes(note);
+                    const newNote = new NotesView(this.app);
+                  },
+                  { once: true }
+                );
+              }
             }
-          }
-          if (actionTarget.classList.contains("passwordBtn")) {
-            const passwordBtnContent = actionTarget
-              .closest(".note-item")
-              .querySelector(".passwordBtnContent");
-            passwordBtnContent.classList.add("show-password-btn-content");
-            const saveBtns = this.app.querySelectorAll(".saveBtn");
-            // console.log(saveBtns);
-            saveBtns.forEach((btn) => {
-              btn.addEventListener("click", (e) => {
-                e.stopImmediatePropagation();
-                // get password element and value
+            if (actionTarget.classList.contains("passwordBtn")) {
+              const passwordBtnContent = actionTarget
+                .closest(".note-item")
+                .querySelector(".passwordBtnContent");
+              passwordBtnContent.classList.add("show-password-btn-content");
+              passwordBtnContent.querySelector(".passwordValue").value = "";
+              passwordBtnContent
+                .querySelector(".passwordValue")
+                .classList.remove("wrong-password");
+              passwordBtnContent.querySelector(".passwordConfirmValue").value =
+                "";
+              passwordBtnContent
+                .querySelector(".passwordConfirmValue")
+                .classList.remove("wrong-password");
+              const saveBtns = this.app.querySelectorAll(".saveBtn");
+              // console.log(saveBtns);
+              saveBtns.forEach((btn) => {
+                btn.addEventListener("click", (e) => {
+                  e.stopImmediatePropagation();
+                  // get password element and value
 
-                // get note-item element
-                const noteItem = e.target.closest(".note-item");
-                const passwordElement =
-                  noteItem.querySelector(".passwordValue");
-                const password = passwordElement.value;
-                // get confirm password and element
-                const confirmPasswordElement = noteItem.querySelector(
-                  ".passwordConfirmValue"
-                );
-                const confirmPassword = confirmPasswordElement.value;
-                // get note id
-                const noteId = noteItem.dataset.noteId;
+                  // get note-item element
+                  const noteItem = e.target.closest(".note-item");
+                  const passwordElement =
+                    noteItem.querySelector(".passwordValue");
+                  const password = passwordElement.value;
+                  // get confirm password and element
+                  const confirmPasswordElement = noteItem.querySelector(
+                    ".passwordConfirmValue"
+                  );
+                  const confirmPassword = confirmPasswordElement.value;
+                  // get note id
+                  const noteId = noteItem.dataset.noteId;
 
-                // compare passwords
-                this.comparePassword(
-                  password,
-                  confirmPassword,
-                  passwordElement,
-                  confirmPasswordElement,
-                  noteId
-                );
+                  // compare passwords
+                  this.comparePassword(
+                    password,
+                    confirmPassword,
+                    passwordElement,
+                    confirmPasswordElement,
+                    noteId
+                  );
+                });
               });
-            });
 
-            // get cancel Btn
-            const cancelBtns = this.app.querySelectorAll(".cancelBtn");
-            cancelBtns.forEach((btn) => {
-              btn.addEventListener("click", (e) => {
-                e.stopImmediatePropagation();
-                e.target
-                  .closest(".note-item")
-                  .querySelector(".passwordBtnContent")
-                  .classList.remove("show-password-btn-content");
+              // get cancel Btn
+              const cancelBtns = this.app.querySelectorAll(".cancelBtn");
+              cancelBtns.forEach((btn) => {
+                btn.addEventListener("click", (e) => {
+                  e.stopImmediatePropagation();
+                  e.target
+                    .closest(".note-item")
+                    .querySelector(".passwordBtnContent")
+                    .classList.remove("show-password-btn-content");
+                });
               });
-            });
+            }
           }
         },
         { once: true }
@@ -239,6 +260,7 @@ export default class NotesLogic {
     let sibling = lockBtn.nextElementSibling;
     while (sibling) {
       sibling.classList.toggle("show-password-element");
+      sibling.value = "";
       sibling = sibling.nextElementSibling;
     }
   }

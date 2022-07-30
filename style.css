@@ -562,7 +562,7 @@ body {
 
 .note-header__input {
   width: 70%;
-  border: 1px solid var(--mainBlack);
+  border: 1px solid var(--maincolor);
   border-radius: 5px;
   background-color: transparent;
   padding: 5px;
@@ -576,7 +576,7 @@ body {
 .note-item__body textarea {
   background-color: transparent;
   border-radius: 5px;
-  border: 1px solid var(--mainBlack);
+  border: 1px solid var(--maincolor);
   padding: 5px;
   font-size: 10px;
   resize: none;
