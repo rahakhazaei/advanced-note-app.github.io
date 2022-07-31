@@ -61,11 +61,33 @@ export default class NotesLogic {
 
     // search note title
     this.searchNote();
+
+    // select note based on favorite color
+    const favoriteColor = document.querySelector(".favoriteMenu");
+    favoriteColor.addEventListener("click", (e) => {
+      e.stopImmediatePropagation();
+      const notes = NotesAPI.getNotes();
+      let favoriteNote = [];
+      e.target.dataset.color == "red" 
+        ? (favoriteNote = notes.filter((note) => note.color === "red" && note.favorite))
+        : e.target.dataset.color == "yellow"
+        ? (favoriteNote = notes.filter((note) => note.color === "yellow" && note.favorite))
+        : e.target.dataset.color == "purple"
+        ? (favoriteNote = notes.filter((note) => note.color === "purple" && note.favorite))
+        : e.target.dataset.color == "orange"
+        ? (favoriteNote = notes.filter((note) => note.color === "orange" && note.favorite))
+        : e.target.dataset.color == "gray"
+        ? (favoriteNote = notes.filter((note) => note.color === "gray" && note.favorite))
+        : e.target.dataset.color == "blue"
+        ? (favoriteNote = notes.filter((note) => note.color === "blue" && note.favorite))
+        : (favoriteNote = notes.filter((note) => note.color === "transparen"));
+      const notesView = new NotesView(this.app, null, favoriteNote);
+    });
   }
 
   searchNote() {
     const searchInput = document.querySelector(".searchInput");
-    searchInput.addEventListener("keyup", (e) => {
+    searchInput.addEventListener("input", (e) => {
       const notes = NotesAPI.getNotes();
       e.stopImmediatePropagation();
 

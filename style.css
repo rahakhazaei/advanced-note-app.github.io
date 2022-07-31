@@ -95,7 +95,6 @@ body {
 
 .nav-bar__favorite.toggleMenu ~ .nav-bar__menu .favorite-menu {
   opacity: 1;
-  opacity: 1;
   width: 100%;
   max-height: 100px;
 }
@@ -153,8 +152,8 @@ body {
 }
 
 .favorite-menu > .note-color {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   margin-top: 0;
   margin-left: 5px;
 }
@@ -167,19 +166,26 @@ body {
   font-size: 15px;
 }
 
-.nav-bar__search input {
+.nav-bar__search-title {
+  display: none;
+  margin: 0 10px;
+  /* margin-right: 10px; */
+}
+
+.nav-bar__search-input {
   width: 100%;
   border: 1px solid rgba(231, 231, 231, 0.9);
   outline: none;
   padding: 5px 10px;
   margin-right: 10px;
   border-radius: 5px;
+  font-size: 14px;
+  font-family: "iranyekan";
 }
 
-.nav-bar__search-title {
-  display: none;
-  margin: 0 10px;
-  /* margin-right: 10px; */
+.nav-bar__search-input::placeholder {
+  font-size: 10px;
+  color: #a8a29e;
 }
 
 .side-bar {
@@ -281,6 +287,13 @@ body {
   background-color: var(--gray);
 }
 
+.note-color--transparent {
+  background-image: url('./assets/images/chess-pattern.png');
+  background-size: 200px;
+
+}
+
+
 @media screen and (min-width: 567px) {
   .nav-bar {
     font-size: 14px;
@@ -323,10 +336,10 @@ body {
     width: 35%;
   }
 
-  .favorite-menu > .note-color {
+  /* .favorite-menu > .note-color {
     width: 20px;
     height: 20px;
-  }
+  } */
 
   .sort-menu__item {
     font-size: 12px;
@@ -525,7 +538,7 @@ body {
 
 .cancel-btn:hover {
   border-color: tomato;
-  transform: scale(1.2)
+  transform: scale(1.2);
 }
 
 .note-item__header {

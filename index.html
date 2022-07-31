@@ -21,7 +21,7 @@
           <div class="nav-bar__search">
             <i class="fa fa-search" aria-hidden="true"></i>
             <span class="nav-bar__search-title">جستجو</span>
-            <input class="searchInput" type="search" name="" id="" />
+            <input class="searchInput nav-bar__search-input" type="search" name="" id="" placeholder="جستجو در عنوان" />
           </div>
           <div class="nav-bar__sort navBarSort">
             <span class="nav-bar__sort-title">مرتب سازی</span>
@@ -38,13 +38,14 @@
               <li class="sort-menu__item">تاریح ایجاد</li>
             </ul>
 
-            <ul class="favorite-menu">
-              <li class="note-color note-color--red"></li>
-              <li class="note-color note-color--yellow"></li>
-              <li class="note-color note-color--blue"></li>
-              <li class="note-color note-color--purple"></li>
-              <li class="note-color note-color--orange"></li>
-              <li class="note-color note-color--gray"></li>
+            <ul class="favorite-menu favoriteMenu">
+              <li class="note-color note-color--transparent favoriteNoteColor" data-color="transparent"></li>
+              <li class="note-color note-color--red favoriteNoteColor" data-color="red"></li>
+              <li class="note-color note-color--yellow favoriteNoteColor" data-color="yellow"></li>
+              <li class="note-color note-color--blue favoriteNoteColor" data-color="blue"></li>
+              <li class="note-color note-color--purple favoriteNoteColor" data-color="purple"></li>
+              <li class="note-color note-color--orange favoriteNoteColor" data-color="orange"></li>
+              <li class="note-color note-color--gray favoriteNoteColor" data-color="gray"></li>
             </ul>
           </div>
         </div>
