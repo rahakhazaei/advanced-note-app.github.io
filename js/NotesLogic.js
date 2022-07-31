@@ -68,20 +68,46 @@ export default class NotesLogic {
       e.stopImmediatePropagation();
       const notes = NotesAPI.getNotes();
       let favoriteNote = [];
-      e.target.dataset.color == "red" 
-        ? (favoriteNote = notes.filter((note) => note.color === "red" && note.favorite))
+      e.target.dataset.color == "red"
+        ? (favoriteNote = notes.filter(
+            (note) => note.color === "red" && note.favorite
+          ))
         : e.target.dataset.color == "yellow"
-        ? (favoriteNote = notes.filter((note) => note.color === "yellow" && note.favorite))
+        ? (favoriteNote = notes.filter(
+            (note) => note.color === "yellow" && note.favorite
+          ))
         : e.target.dataset.color == "purple"
-        ? (favoriteNote = notes.filter((note) => note.color === "purple" && note.favorite))
+        ? (favoriteNote = notes.filter(
+            (note) => note.color === "purple" && note.favorite
+          ))
         : e.target.dataset.color == "orange"
-        ? (favoriteNote = notes.filter((note) => note.color === "orange" && note.favorite))
+        ? (favoriteNote = notes.filter(
+            (note) => note.color === "orange" && note.favorite
+          ))
         : e.target.dataset.color == "gray"
-        ? (favoriteNote = notes.filter((note) => note.color === "gray" && note.favorite))
+        ? (favoriteNote = notes.filter(
+            (note) => note.color === "gray" && note.favorite
+          ))
         : e.target.dataset.color == "blue"
-        ? (favoriteNote = notes.filter((note) => note.color === "blue" && note.favorite))
+        ? (favoriteNote = notes.filter(
+            (note) => note.color === "blue" && note.favorite
+          ))
         : (favoriteNote = notes.filter((note) => note.color === "transparen"));
       const notesView = new NotesView(this.app, null, favoriteNote);
+    });
+
+    // sort menu
+    const lastUpdated = document.querySelector(".noteLastUpdated");
+    const createdTime = document.querySelector(".noteCreatedTime");
+    lastUpdated.addEventListener("click", (e) => {
+      e.stopImmediatePropagation();
+      const notes = NotesAPI.getNotes();
+      const notesView = new NotesView(this.app, null, notes);
+    });
+    createdTime.addEventListener("click", (e) => {
+      e.stopImmediatePropagation();
+      const notes = NotesAPI.getNotesLastCreated();
+      const notesView = new NotesView(this.app, null, notes);
     });
   }
 

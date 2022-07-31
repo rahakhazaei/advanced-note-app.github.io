@@ -40,6 +40,13 @@ export default class NotesAPI {
     );
   }
 
+  static getNotesLastCreated() {
+    const saveNotes = JSON.parse(localStorage.getItem("app-notes")) || notes;
+    return saveNotes.sort((a, b) =>
+      new Date(a.createTime) > new Date(b.createTime) ? -1 : 1
+    );
+  }
+
   static saveNotes(note) {
     const notes = NotesAPI.getNotes();
     const savedNote = notes.find((item) => item.id == note.id);

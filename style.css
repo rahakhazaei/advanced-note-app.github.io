@@ -67,7 +67,7 @@ body {
 .nav-bar__sort {
   display: flex;
   align-items: center;
-  font-size: 15px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -78,7 +78,7 @@ body {
 .nav-bar__favorite {
   display: flex;
   align-items: center;
-  font-size: 15px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -298,6 +298,10 @@ body {
   .nav-bar {
     font-size: 14px;
   }
+
+  .nav-bar__sort, .nav-bar__favorite {
+    font-size: 15px;
+  }
 }
 
 @media screen and (min-width: 767px) {
@@ -333,7 +337,7 @@ body {
   }
 
   .nav-bar__sort.toggleMenu ~ .nav-bar__menu .sort-menu {
-    width: 35%;
+    width: 37%;
   }
 
   /* .favorite-menu > .note-color {
