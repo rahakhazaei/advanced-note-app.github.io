@@ -25,25 +25,9 @@ document.addEventListener("click", (e) => {
   if (!isFavMenuClickInsideElement) {
     favoriteMenu.classList.remove("toggleMenu");
   }
-
-  // color picker
-  // if (app.childElementCount > 0) {
-  //   const editBtn = document.querySelectorAll(".editBtn");
-  //   editBtn.forEach((btn) => {
-  //     if (btn.lastElementChild.classList.contains("editMode")) {
-  //       const colorPicker = btn.lastElementChild;
-  //       const isColorPickerClickInsideElement = colorPicker.contains(e.target);
-  //       if (!isColorPickerClickInsideElement) {
-  //         colorPicker.classList.remove("show-color-picker", "editMode");
-  //       }
-  //     }
-  //   });
-  // }
 });
 
-// password. lock icon clicked 
-
-
+// password lock icon clicked 
 sortMenu.addEventListener("click", (e) => {
   sortMenu.classList.toggle("toggleMenu");
 });

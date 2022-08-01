@@ -7,7 +7,7 @@ export default class NotesView {
     this.showNotes(newNote, notes);
   }
   showNotes(newNote = null, notes) {
-    if (notes.length ===0) {
+    if (notes.length === 0) {
       notes = NotesAPI.getNotes();
     }
     // empty inner HTML

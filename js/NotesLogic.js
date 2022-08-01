@@ -34,6 +34,8 @@ export default class NotesLogic {
             this.editNote(newTitle, newBody, noteID);
           });
         });
+
+        //button on note item clicked
         this.actionOnNote();
 
         // show password input
@@ -57,6 +59,7 @@ export default class NotesLogic {
       true
     );
 
+    // add new note
     this.addNote();
 
     // search note title
@@ -111,6 +114,7 @@ export default class NotesLogic {
     });
   }
 
+  // search on note title
   searchNote() {
     const searchInput = document.querySelector(".searchInput");
     searchInput.addEventListener("input", (e) => {
@@ -127,6 +131,7 @@ export default class NotesLogic {
     });
   }
 
+  // edite note
   editNote(newTitle, newBody, noteID) {
     // save to storage
     const notes = NotesAPI.getNotes();
@@ -136,6 +141,7 @@ export default class NotesLogic {
     NotesAPI.saveNotes(editNote);
   }
 
+  // add new note
   addNote() {
     const colorBtn = document.querySelector(".sideBarNoteColor");
     colorBtn.addEventListener("click", (e) => {
@@ -155,6 +161,7 @@ export default class NotesLogic {
     });
   }
 
+  //actions are favorite, password, edit color or delete note
   actionOnNote() {
     const action = this.app.querySelectorAll(".note-item");
     action.forEach((act) => {
@@ -287,6 +294,7 @@ export default class NotesLogic {
     });
   }
 
+  // compare password input with confirm password input and password on local storage
   comparePassword(
     password,
     confirmPassword,
@@ -312,6 +320,7 @@ export default class NotesLogic {
     }
   }
 
+  // show password inputs if lockBtn clicked
   showPasswordInput(element) {
     const lockBtn = element.target.closest(".passwordLock");
     lockBtn.classList.remove("wrong-password");
@@ -323,6 +332,7 @@ export default class NotesLogic {
     }
   }
 
+  // login window 
   login(btn) {
     const noteId = btn.parentElement.parentElement.dataset.noteId;
     const note = NotesAPI.findNote(noteId);

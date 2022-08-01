@@ -287,6 +287,10 @@ body {
   .nav-bar__sort, .nav-bar__favorite {
     font-size: 15px;
   }
+
+  .favorite-menu > .note-color {
+    margin-left: 15px;
+  }
 }
 
 @media screen and (min-width: 767px) {
