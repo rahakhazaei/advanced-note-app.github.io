@@ -1,5 +1,9 @@
 import NotesAPI from "./NotesAPI.js";
 import NotesLogic from "./notesLogic.js";
+// import { lastDayOfMonth } from 'date-fns';
+const { formatDistance} = require("date-fns");
+// let parseISO = require('date-fns/parseISO');
+
 
 export default class NotesView {
   constructor(app, newNote, notes) {
@@ -93,6 +97,11 @@ export default class NotesView {
   }
 
   _createNoteHtml(note) {
+
+    const noteLastUpdate = `${new Date(
+    note.lastUpdated || ""
+  )}`
+  const presentDay = new Date();
     return `<div class="note-item" data-note-id=${note.id || ""}>
     <div class="password-container">
       <span class="password-icon passwordLock"><i class="fa-solid fa-lock"></i></span>
@@ -148,13 +157,10 @@ export default class NotesView {
       <span class="note-footer__delete note-button noteBtn deleteBtn"
         ><i class="fa fa-trash"></i>
       </span>
-      <span class="note-footer__date">${new Date(
-        note.lastUpdated || ""
-      ).toLocaleString("en", {
-        dateStyle: "full",
-        timeStyle: "short",
-      })}</span>
+      <span class="note-footer__date">${formatDistance(new Date(noteLastUpdate),new Date(presentDay))}</span>
     </div>
   </div>`;
+
   }
 }
+

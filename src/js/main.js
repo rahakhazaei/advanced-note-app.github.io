@@ -2,6 +2,10 @@
 import NotesAPI from "./NotesAPI.js";
 import NotesLogic from "./notesLogic.js";
 import NotesView from "./notesView.js";
+import "../css/style.css"
+// import { lastDayOfMonth } from 'date-fns';
+
+
 
 const sortMenu = document.querySelector(".navBarSort");
 const favoriteMenu = document.querySelector(".navBarFavorite");

@@ -1,4 +1,4 @@
-@import url("./assets/styles/fonts.css");
+@import url("/assets/styles/fonts.css");
 
 * {
   margin: 0;
@@ -273,7 +273,7 @@ body {
 }
 
 .note-color--transparent {
-  background-image: url('./assets/images/chess-pattern.png');
+  background-image: url('/assets/images/chess-pattern.png');
   background-size: 200px;
 
 }
